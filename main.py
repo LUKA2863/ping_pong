@@ -1,7 +1,7 @@
 import pygame
 
 win = pygame.display.set_mode((500,500))
-#阿松大个人
+
 clock = pygame.time.Clock()
 
 win.fill((0,220,255))
