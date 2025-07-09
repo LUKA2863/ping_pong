@@ -6,7 +6,7 @@ clock = pygame.time.Clock()
 
 win.fill((0,220,255))
 class GameSprite(pygame.sprite.Sprite):
-   def __init__(self, player_image, player_x, player_y, player_speed, wight, height):
+    def __init__(self, player_image, player_x, player_y, player_speed, wight, height):
        super().__init__()
        self.image = pygame.transform.scale(pygame.image.load(player_image), (wight, height)) #вместе 55,55 - параметры
        self.speed = player_speed
@@ -30,7 +30,7 @@ class Player(GameSprite):
             self.rect.y += self.speed
 
 racket1 = Player('racket.png',30,200,4,50,150)
-racket2 = Player('racket.png',30,200,4,50,150)
+racket2 = Player('racket.png',520,200,4,50,150)
 ball = GameSprite('tenis_ball.png',200,200,4,50,50)
 is_game = True
 
