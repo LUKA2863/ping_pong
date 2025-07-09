@@ -42,14 +42,19 @@ ball = GameSprite('tenis_ball.png', 200, 200, 4, 50, 50)
 speed_x = 5
 speed_y = 5
 
+pygame.font.init()
+
+not_finish = True
+
 while is_game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             is_game = False
 
     win.fill(back)
-    ball.rect.x += speed_x
-    ball.rect.y += speed_y
+    if not_finish:
+        ball.rect.x += speed_x
+        ball.rect.y += speed_y
     
     if ball.rect.y > 450 or ball.rect.y < 50:
         speed_y *= -1
@@ -57,13 +62,24 @@ while is_game:
     if pygame.sprite.collide_rect(racket1, ball) or pygame.sprite.collide_rect(racket2, ball):
         speed_x *= -1
 
-    racket1.update_l()
+    if not_finish:
+        racket1.update_l()
 
-    racket2.update_r()
+        racket2.update_r()
 
     racket1.reset()
     racket2.reset()
     ball.reset()
+
+    if ball.rect.x < -50:
+        r_win = pygame.font.Font(None, 70).render('Right WIN!', True, (0, 255, 0))
+        win.blit(r_win, (150, 250))
+        not_finish = False
+
+    if ball.rect.x > 550:
+        r_win = pygame.font.Font(None, 70).render('Left WIN!', True, (0, 255, 0))
+        win.blit(r_win, (150, 250))
+        not_finish = False   
 
     pygame.display.update()
     clock.tick(40)
